@@ -3,6 +3,7 @@ package database
 import (
 	"backend-finance/models"
 	"fmt"
+	"log"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -11,12 +12,12 @@ import (
 var DB *gorm.DB
 
 func ConnectDB() {
-	dsn := "root:@tcp(127.0.0.1:3306)/tes_fin?parseTime=true"
+	dsn := "root:ZopPrUMiWuTerndSYxBeKMwpoXkApVLi@tcp(crossover.proxy.rlwy.net:12243)/railway?parseTime=true"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		panic("Failed to connect to database: " + err.Error())
+		log.Fatalf("Failed to connect to database: %v", err)
 	}
-	fmt.Println("Successful Connection")
+	fmt.Println("Successful Connection to Railway")
 	db.AutoMigrate(&models.Transaction{})
 	DB = db
 }
